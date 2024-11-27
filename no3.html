@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ms.moon</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      /* Hide the content until video ends */
+      #content {
+        display: none;
+      }
+      /* Video styling to make it take full screen */
+      #video-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        z-index: 1000;
+      }
+      video {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Video Section (Fullscreen) -->
+    <div id="video-container">
+      <video id="intro-video" autoplay muted>
+        <source src="bg.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Main Content Section (Hidden until video ends) -->
+    <div id="content">
+      <div class="container">
+        <div
+          class="tenor-gif-embed"
+          data-postid="15974530976611222074"
+          data-share-method="host"
+          data-aspect-ratio="1.26923"
+          data-width="100%"
+        >
+          <a href="https://tenor.com/view/peach-goma-phone-gif-15974530976611222074"
+            >Peach Goma Phone Sticker</a
+          > from
+          <a href="https://tenor.com/search/peach+goma-stickers"
+            >Peach Goma Stickers</a
+          >
+        </div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+        <h1>Come On, Baby! </h1>
+        <p>That's Really Not Right, Baby 💔</p>
+
+        <div class="btn">
+          <a href="yes.html">Yes</a>
+          <a href="#" id="move-random">No</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+      // Wait for the video to finish, then show the content
+      var video = document.getElementById('intro-video');
+      var content = document.getElementById('content');
+      var videoContainer = document.getElementById('video-container');
+
+      // This function triggers fullscreen mode
+      function requestFullScreen() {
+        if (videoContainer.requestFullscreen) {
+          videoContainer.requestFullscreen();
+        } else if (videoContainer.mozRequestFullScreen) { // Firefox
+          videoContainer.mozRequestFullScreen();
+        } else if (videoContainer.webkitRequestFullscreen) { // Chrome, Safari
+          videoContainer.webkitRequestFullscreen();
+        } else if (videoContainer.msRequestFullscreen) { // IE/Edge
+          videoContainer.msRequestFullscreen();
+        }
+      }
+
+      // When the video starts playing
+      video.onplay = function () {
+        // Remove muted so that audio can play
+        video.muted = false;
+
+        // Trigger fullscreen after the video starts
+        requestFullScreen();
+      };
+
+      // When the video ends, show the content and hide the video
+      video.onended = function () {
+        // When the video ends, hide the fullscreen video and show the content
+        videoContainer.style.display = 'none';
+        content.style.display = 'block';
+      };
+    </script>
+  </body>
+</html>
